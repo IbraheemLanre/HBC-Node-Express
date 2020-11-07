@@ -1,0 +1,22 @@
+[
+    {
+        "model":"WBM",
+        "licence":"ABC-1",
+        "price":30000
+    },
+    {
+        "model":"Hoppa",
+        "licence":"AYZ-123",
+        "price": 25000
+    },
+    {
+        "model":"Hoppa",
+        "licence":"DFG-12",
+        "price": 10000
+    },
+    {
+        "model":"Ovlov",
+        "licence":"HIK-2",
+        "price": 60000
+    }
+]
