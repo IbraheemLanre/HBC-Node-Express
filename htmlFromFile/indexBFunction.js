@@ -6,7 +6,6 @@ const path = require("path");
 const { port, host } = require("./config.json");
 const docPath = path.join(__dirname, "home.html");
 
-
 const server = http.createServer((req, res) => {
   sendFile(res, docPath);
 });

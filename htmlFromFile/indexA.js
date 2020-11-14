@@ -6,6 +6,7 @@ const path = require("path");
 const { port, host } = require("./config.json");
 const homePath = path.join(__dirname, "home.html");
 
+// linking an external document in Node.js
 const server = http.createServer((req, res) => {
   fs.readFile(homePath, "utf-8", (err, data) => {
     if (err) {
