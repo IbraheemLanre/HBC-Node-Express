@@ -1,0 +1,36 @@
+{
+    ".html":{
+        "type":"text/html",
+        "encoding":"utf-8"
+    },
+    ".js":{
+        "type":"text/javascript",
+        "encoding":"utf-8"
+    },
+    ".css":{
+        "type":"text/css",
+        "encoding":"utf-8"
+    },
+    ".json":{
+        "type":"application/json",
+        "encoding":"utf-8"
+    },
+    ".png":{
+        "type":"image/png",
+        "encoding":"binary"
+    },
+    ".jpg":{
+        "type":"image/jpeg",
+        "encoding":"binary"
+    },
+    ".gif":{
+        "type":"image/gif",
+        "encoding":"binary"
+    },
+    ".ico":{
+        "type":"image/vdn.microsoft.icon",
+        "encoding":"binary"
+    }
+
+    
+}
