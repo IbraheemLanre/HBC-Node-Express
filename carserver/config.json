@@ -1,0 +1,23 @@
+{
+    "port":3000,
+    "host":"localhost",
+    "library":{
+        "folder":"library",
+        "filehandler":"fileHandler.js",
+        "requesthandler":"requestHandler.js",
+        "gethandler":"routeHandlerGet.js",
+        "posthandler":"routeHandlerPost.js"
+    },
+    "storage":{
+        "folder":"carstorage",
+        "file":"carStorage",
+        "json":"cars.json"
+    },
+    "resourcePaths":["/favicon","/css/","/js/","/images/"],
+    "MENU":"menu.html",
+    "ERRORPAGE":"errorPage.html",
+    "FORM":"form.html",
+    "webpages":{
+        "folder":"webpages"
+    }
+}
