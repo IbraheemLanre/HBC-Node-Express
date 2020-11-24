@@ -51,6 +51,35 @@ app.get("/users", (req, res) => {
   });
 });
 
+app.get("/cars", (req, res) => {
+  const cars = [
+    { model: "Hoppa", licence: "ABC-1", picture: "hoppa.png" },
+    { model: "ModelT", licence: "A-1", picture: "modelt.png" },
+    { model: "Hoppa", licence: "XYZ-12", picture: "hoppa.png" },
+    { model: "Kaara", licence: "FGH-897", picture: "kaara.png" },
+  ];
+  res.render("tableDemo", {
+    headerB: "Cars",
+    title: "Car Table",
+    cars: cars,
+  });
+});
+
+app.get("/carsif", (req, res) => {
+  const cars = []
+//   const cars = [
+//     { model: "Hoppa", licence: "ABC-1", picture: "hoppa.png" },
+//     { model: "ModelT", licence: "A-1", picture: "modelt.png" },
+//     { model: "Hoppa", licence: "XYZ-12", picture: "hoppa.png" },
+//     { model: "Kaara", licence: "FGH-897", picture: "kaara.png" },
+//   ];
+  res.render("tableDemoIf", {
+    title: "Car Table",
+    headerC: "Cars",
+    cars: cars,
+  });
+});
+
 server.listen(port, host, () =>
   console.log(`Server is listening to ${host}:${port}`)
 );
