@@ -1,5 +1,7 @@
 # Express app
 
+This is server performs a default get request for any server.
+
 ## create a folder for the application
 
 ## create package.json for the app
