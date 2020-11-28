@@ -5,7 +5,6 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const { port, host, storage } = require("./serverConfig.json");
-const { EACCES } = require("constants");
 const { createDataStorage } = require(path.join(
   __dirname,
   storage.storageFolder,

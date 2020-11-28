@@ -9,7 +9,7 @@ const CODES = {
   REMOVE_OK: 5,
   NOT_REMOVED: 6,
   UPDATE_OK: 7,
-  NOT_UPDATE: 8,
+  NOT_UPDATED: 8,
   WRITE_OK: 9,
   WRITE_ERROR: 10,
 };
@@ -22,37 +22,37 @@ const MESSAGES = {
   }),
 
   NOT_FOUND: (id) => ({
-    message: `No employee found with employeeId ${id}`,
+    message: `No moped found with mopedId ${id}`,
     code: CODES.NOT_FOUND,
     type: "error",
   }),
 
   INSERT_OK: (id) => ({
-    message: `Employee ${id} was inserted`,
+    message: `Moped ${id} was inserted`,
     code: CODES.INSERT_OK,
     type: "info",
   }),
 
   NOT_INSERTED: () => ({
-    message: "Employee was not inserted",
+    message: "Moped was not inserted",
     code: CODES.NOT_INSERTED,
     type: "error",
   }),
 
   ALREADY_IN_USE: (id) => ({
-    message: `EmployeeId ${id} was already in use`,
-    code: CODES.ALREADY_IN_USE,
+    message: `Moped ${id} was already in use`,
+    code: CODES.REMOVE_OK,
     type: "error",
   }),
 
   REMOVE_OK: (id) => ({
-    message: `Employee ${id} was removed`,
+    message: `Moped ${id} was removed`,
     code: CODES.REMOVE_OK,
     type: "info",
   }),
-  
+
   NOT_REMOVED: () => ({
-    message: "No employee found with the given employeeId. Nothing removed",
+    message: "No moped found with the given mopedId. Nothing removed",
     code: CODES.NOT_REMOVED,
     type: "error",
   }),
@@ -63,9 +63,9 @@ const MESSAGES = {
     type: "info",
   }),
 
-  NOT_UPDATE: () => ({
+  NOT_UPDATED: () => ({
     message: "Data was not updated",
-    code: CODES.NOT_UPDATE,
+    code: CODES.NOT_UPDATED,
     type: "error",
   }),
 
@@ -74,6 +74,7 @@ const MESSAGES = {
     code: CODES.WRITE_OK,
     type: "info",
   }),
+
   WRITE_ERROR: (errormessage) => ({
     message: errormessage,
     code: CODES.WRITE_ERROR,
