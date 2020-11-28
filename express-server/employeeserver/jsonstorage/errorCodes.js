@@ -39,13 +39,13 @@ const MESSAGES = {
     type: "error",
   }),
 
-  ALREADY_IN_USE: () => ({
+  ALREADY_IN_USE: (id) => ({
     message: `EmployeeId ${id} was already in use`,
     code: CODES.ALREADY_IN_USE,
     type: "error",
   }),
 
-  REMOVE_OK: () => ({
+  REMOVE_OK: (id) => ({
     message: `Employee ${id} was removed`,
     code: CODES.REMOVE_OK,
     type: "info",
@@ -56,7 +56,7 @@ const MESSAGES = {
     type: "error",
   }),
 
-  UPDATE_OK: () => ({
+  UPDATE_OK: (id) => ({
     message: `Employee ${id} was updated`,
     code: CODES.UPDATE_OK,
     type: "info",

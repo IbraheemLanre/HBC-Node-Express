@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const { port, host, storage } = require("./serverConfig.json");
+const { EACCES } = require("constants");
 const { createDataStorage } = require(path.join(
   __dirname,
   storage.storageFolder,
@@ -33,9 +34,128 @@ app.get("/all", (req, res) =>
   )
 );
 
+app.get("/getperson", (req, res) => {
+  res.render("getPerson", {
+    title: "Get",
+    header: "Get",
+    action: "/getPerson",
+  });
+});
+
+app.post("/getperson", (req, res) => {
+  if (!req.body) {
+    res.statusCode(500);
+  }
+  let personId = req.body.personId;
+  dataStorage
+    .get(personId)
+    .then((employee) =>
+      res.render("personPage", {
+        result: createPerson(employee),
+      })
+    )
+    .catch((err) => sendErrorPage(res, err));
+});
+
+app.get("/inputform", (req, res) =>
+  res.render("form", {
+    title: "Add person",
+    header: "Add a new person",
+    action: "/insert",
+    personId: { value: "", readonly: "" },
+    firstname: { value: "", readonly: "" },
+    lastname: { value: "", readonly: "" },
+    department: { value: "", readonly: "" },
+    salary: { value: "", readonly: "" },
+  })
+);
+
+app.post("/insert", (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  } else {
+    dataStorage
+      .insert(createEmployee(req.body))
+      .then((status) => sendStatusPage(res, status))
+      .catch((err) => sendErrorPage(res, err));
+  }
+});
+
+app.get("/updateform", (req, res) =>
+  res.render("form", {
+    title: "Update person",
+    header: "Update person data",
+    action: "/updatedata",
+    personId: { value: "", readonly: "" },
+    firstname: { value: "", readonly: "readonly" },
+    lastname: { value: "", readonly: "readonly" },
+    department: { value: "", redonly: "readonly" },
+    salary: { value: "", readonly: "readonly" },
+  })
+);
+
+app.post("/updatedata", async (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  }
+  dataStorage
+    .get(req.body.personId)
+    .then((employee) => createPerson(employee))
+    .then((person) =>
+      res.render("form", {
+        title: "Update person",
+        header: "Update person data",
+        action: "/updateperson",
+        personId: { value: person.personId, readonly: "readonly" },
+        firstname: { value: person.firstname, readonly: "" },
+        lastname: { value: person.lastname, readonly: "" },
+        department: { value: person.department, readonly: "" },
+        salary: { value: person.salary, readonly: "" },
+      })
+    )
+    .catch((err) => sendErrorPage(res, err));
+});
+
+app.post("/updateperson", (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  }
+  dataStorage
+    .update(createEmployee(req.body))
+    .then((status) => sendStatusPage(res, status))
+    .catch((err) => sendErrorPage(res, err));
+});
+
+app.get("/removeperson", (req, res) =>
+  res.render("getPerson", {
+    title: "Remove",
+    header: "Remove a person",
+    action: "/removeperson",
+  })
+);
+
+app.post("/removeperson", (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  }
+  const personId = req.body.personId;
+  dataStorage
+    .remove(personId)
+    .then((status) => sendStatusPage(res, status))
+    .catch((err) => sendErrorPage(res, err));
+});
+
 server.listen(port, host, () => {
   console.log(`Server is listening to ${host}:${port}`);
 });
+
+function sendErrorPage(res, err, title = "Error", header = "Error") {
+  sendStatusPage(res, err, title, header);
+}
+
+function sendStatusPage(res, status, title = "Status", header = "Status") {
+  return res.render("statusPage", { title, header, status });
+}
 
 // from employee to person
 function createPerson(employee) {
