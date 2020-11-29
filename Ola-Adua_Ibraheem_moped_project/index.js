@@ -79,6 +79,71 @@ app.post("/insert", (req, res) => {
   }
 });
 
+app.get("/updateform", (req, res) => {
+  res.render("form", {
+    title: "Update Moped",
+    header: "Update Data",
+    action: "/updatedata",
+    mopedId: { value: "", readonly: "" },
+    name: { value: "", readonly: "readonly" },
+    modelYear: { value: "", readonly: "readonly" },
+    topspeed: { value: "", readonly: "readonly" },
+    itemsInStock: { value: "", readonly: "readonly" },
+  });
+});
+
+app.post("/updatedata", async (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  }
+  dataStorage
+    .get(req.body.mopedId)
+    .then((moped) => createMoped(moped))
+    .then((moped) =>
+      res.render("form", {
+        title: "Update Moped",
+        header: "Update Moped",
+        action: "/updatemoped",
+        mopedId: { value: moped.mopedId, readonly: "readonly" },
+        name: { value: moped.name, readonly: "" },
+        modelYear: { value: moped.modelYear, readonly: "" },
+        topspeed: { value: moped.topspeed, readonly: "" },
+        itemsInStock: { value: moped.itemsInStock, readonly: "" },
+      })
+    )
+    .catch((err) => sendErrorPage(res, err));
+});
+
+app.post("/updatemoped", (req, res) => {
+  if (!req.body) {
+    res.sendStatus(500);
+  } else {
+    dataStorage
+      .update(createMoped(req.body))
+      .then((status) => sendStatusPage(res, status))
+      .catch((err) => sendErrorPage(res, err));
+  }
+});
+
+app.get("/removemoped", (req, res) => {
+  res.render("getMoped", {
+    title: "Remove Moped",
+    header: "Remove Moped",
+    action: "/removemoped",
+  });
+});
+
+app.post("/removemoped", (req, res) => {
+  if (!req.body) {
+    res.statusCode(500);
+  }
+  const mopedId = req.body.mopedId;
+  dataStorage
+    .remove(mopedId)
+    .then((status) => sendStatusPage(res, status))
+    .catch((err) => sendErrorPage(res, err));
+});
+
 server.listen(port, host, () =>
   console.log(`Server is listening to ${host}:${port}`)
 );

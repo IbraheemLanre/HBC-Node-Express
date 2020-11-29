@@ -165,7 +165,7 @@ function createDataStorage() {
           reject(MESSAGES.NOT_UPDATE());
         } else {
           if (await updateStorage(employee)) {
-            reject(MESSAGES.UPDATE_OK(employee.employeeId));
+            resolve(MESSAGES.UPDATE_OK(employee.employeeId));
           } else {
             reject(MESSAGES.NOT_UPDATE());
           }

@@ -72,9 +72,7 @@ function createDataStorage() {
 
   async function updateStorage(moped) {
     let storage = await readStorage();
-    const oldMoped = storage.find(
-      (oldMop) => oldMop.mopedId == moped.employeeId
-    );
+    const oldMoped = storage.find((oldMop) => oldMop.mopedId == moped.mopedId);
     if (oldMoped) {
       Object.assign(oldMoped, {
         mopedId: +moped.mopedId,
@@ -128,20 +126,6 @@ function createDataStorage() {
       });
     }
 
-    update(moped) {
-      return new Promise(async (resolve, reject) => {
-        if (!(moped && moped.mopedId && moped.name)) {
-          reject(MESSAGES.NOT_UPDATED());
-        } else {
-          if (await updateStorage(moped)) {
-            resolve(MESSAGES.UPDATE_OK(moped.mopedId));
-          } else {
-            reject(MESSAGES.NOT_UPDATED());
-          }
-        }
-      });
-    }
-
     remove(mopedId) {
       return new Promise(async (resolve, reject) => {
         if (!mopedId) {
@@ -151,6 +135,20 @@ function createDataStorage() {
             resolve(MESSAGES.REMOVE_OK(mopedId));
           } else {
             reject(MESSAGES.NOT_REMOVED());
+          }
+        }
+      });
+    }
+
+    update(moped) {
+      return new Promise(async (resolve, reject) => {
+        if (!(moped && moped.mopedId && moped.name)) {
+          reject(MESSAGES.NOT_UPDATED());
+        } else {
+          if (await updateStorage(moped)) {
+            resolve(MESSAGES.UPDATE_OK(moped.mopedId));
+          } else {
+            reject(MESSAGES.NOT_UPDATED());
           }
         }
       });

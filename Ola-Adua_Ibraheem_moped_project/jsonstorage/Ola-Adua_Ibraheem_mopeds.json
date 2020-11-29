@@ -47,12 +47,5 @@
         "modelYear": 1995,
         "topspeed": 40,
         "itemsInStock": 30
-    },
-    {
-        "mopedId": 8,
-        "name": "RolerCoaster",
-        "modelYear": 2017,
-        "topspeed": 30,
-        "itemsInStock": 174
     }
 ]
