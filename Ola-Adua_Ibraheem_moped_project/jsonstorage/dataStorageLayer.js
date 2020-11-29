@@ -1,13 +1,15 @@
 "use strict";
 
 const path = require("path");
-const fs = require("fs");
+const fs = require("fs").promises;
 const storageConfig = require("./storageConfig.json");
 const storageFile = path.join(__dirname, storageConfig.storageFile);
-const { CODES, MESSAGES } = path.join(__dirname, storageConfig.errorCodes);
+const { CODES, MESSAGES } = require(path.join(
+  __dirname,
+  storageConfig.errorCodes
+));
 
 //Wrapper function
-
 function createDataStorage() {
   //Private API
 
@@ -33,19 +35,15 @@ function createDataStorage() {
   }
 
   async function getFromStorage(id) {
-    // return (await readStorage()).find((moped) => moped.mopedId == id) || null;
-    const storage = await readStorage();
-    const foundMoped = storage.find((moped) => moped.mopeId == id);
-    if (!foundMoped) {
-      return false;
-    } else {
-      return true;
-    }
+    return (await readStorage()).find((moped) => moped.mopedId == id) || null;
   }
 
   async function addToStorage(newMoped) {
     const storage = await readStorage();
-    if (storage.find((moped) => moped.mopedId == newMoped.mopedId)) {
+    const isInStore = storage.find(
+      (moped) => moped.mopedId == newMoped.mopedId
+    );
+    if (isInStore) {
       return false;
     } else {
       storage.push({
@@ -85,7 +83,7 @@ function createDataStorage() {
         topspeed: +moped.topspeed,
         itemsInStock: +moped.itemsInStock,
       });
-      await writrStorage(storage);
+      await writeStorage(storage);
       return true;
     } else {
       return false;
@@ -118,11 +116,11 @@ function createDataStorage() {
 
     insert(moped) {
       return new Promise(async (resolve, reject) => {
-        if (!(moped && moped.mopeId && moped.name)) {
+        if (!(moped && moped.mopedId && moped.name)) {
           reject(MESSAGES.NOT_INSERTED());
         } else {
           if (await addToStorage(moped)) {
-            resolve(MESSAGES.INSERT_OK(moped.mopeId));
+            resolve(MESSAGES.INSERT_OK(moped.mopedId));
           } else {
             reject(MESSAGES.ALREADY_IN_USE(moped.mopedId));
           }
@@ -132,7 +130,7 @@ function createDataStorage() {
 
     update(moped) {
       return new Promise(async (resolve, reject) => {
-        if (!(moped && moped.mopedId & moped.name)) {
+        if (!(moped && moped.mopedId && moped.name)) {
           reject(MESSAGES.NOT_UPDATED());
         } else {
           if (await updateStorage(moped)) {
@@ -160,4 +158,5 @@ function createDataStorage() {
   }
   return new Datastorage();
 }
+
 module.exports = { createDataStorage };

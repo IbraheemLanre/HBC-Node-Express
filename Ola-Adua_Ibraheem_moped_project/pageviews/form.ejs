@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <title><%=title%></title>
+  </head>
+  <body>
+    <main>
+      <h1><%= header%></h1>
+      <form action="<%=action%>" method="POST">
+        <div>
+          <p>
+            <label for="mopedId">moped Id</label>
+            <input type="text" name="mopedId" id="mopedId" size="7"
+            value="<%=mopedId.value%>" "<%=mopedId.readonly%>">
+          </p>
+          <p>
+            <label for="name">name</label>
+            <input type="text" name="name" id="name" size="25"
+            value="<%=name.value%>" "<%=name.readonly%>">
+          </p>
+          <p>
+            <label for="modelYear">modelYear</label>
+            <input type="text" name="modelYear" id="modelYear" size="5"
+            value="<%=modelYear.value%>" "<%=modelYear.readonly%>">
+          </p>
+          <p>
+            <label for="topspeed">topspeed</label>
+            <input type="text" name="topspeed" id="topspeed" size="5"
+            value="<%=topspeed.value%>" "<%=topspeed.readonly%>">
+          </p>
+          <p>
+            <label for="itemsInStock">itemsInStock</label>
+            <input type="text" name="itemsInStock" id="itemsInStock" size="10"
+            value="<%=itemsInStock.value%>" "<%=itemsInStock.readonly%>">
+          </p>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <a href="/"><button>Menu</button></a>
+    </main>
+  </body>
+</html>
