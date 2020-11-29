@@ -15,7 +15,7 @@ const dataStorage = createDataStorage();
 const server = http.createServer(app);
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "pageviews"));
+app.set("views", path.join(__dirname, "webpages"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));

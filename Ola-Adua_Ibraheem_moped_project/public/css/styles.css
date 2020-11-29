@@ -1,21 +1,27 @@
 section {
   display: grid;
   justify-content: center;
+  /* align-items: center; */
 }
 
 main {
   display: grid;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   width: auto;
   border: 3px solid green;
   padding: 2rem;
 }
 
-form {
+/* form {
   display: grid;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+} */
+
+form div p {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 input[readonly] {
