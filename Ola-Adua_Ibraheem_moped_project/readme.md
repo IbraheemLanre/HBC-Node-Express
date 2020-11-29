@@ -1,34 +1,36 @@
-# Employee data storage
+# EXPRESS SCHOOL PROJECT
 
-## employees.json
+## Moped data storage(Ola-Adua_Ibraheem_mopeds.json)
 
-The employeeId is unique
+### Ola-Adua_Ibraheem_mopeds.json.json
+
+The mopedId is unique
 
 ```json
 [
   {
-    "employeeId": 1,
-    "firstname": "Leila",
-    "lastname": "Höikki",
-    "department": "ict",
-    "salary": 4000
+    "mopedId": 6,
+    "name": "Daddy 1",
+    "modelYear": 2012,
+    "topspeed": 20,
+    "itemsInStock": 150
   },
   {
-    "employeeId": 2,
-    "firstname": "Matt",
-    "lastname": "River",
-    "department": "ict",
-    "salary": 4000
+    "mopedId": 7,
+    "name": "Grampa 89",
+    "modelYear": 2005,
+    "topspeed": 5,
+    "itemsInStock": 100
   }
   ...
 ]
 ```
 
-## storageConfig.json
+### storageConfig.json
 
 ```json
 {
-  "storageFile": "employees.json",
+  "storageFile": "Ola-Adua_Ibraheem_mopeds.json",
   "errorCodes": "errorCodes.js"
 }
 ```
@@ -38,12 +40,12 @@ The implementation is wrapped in a createDataStorage function. Function returns 
 ### public API (methods of DataStorage class)
 
 - getAll()
-  - returns an array of all empolyees/[]
+  - returns an array of all moped/[]
 - get(id)
-  - returns an employee object/NOT_FOUND
-- insert(newEmployee)
+  - returns a moped object/NOT_FOUND
+- insert(newMoped)
   - returns INSERT_OK/NOT_INSERTED/ALREADY_IN_USE
-- update(updateEmployee)
+- update(moped)
   - returns UPDATE_OK/NOT_UPDATED
 - remove(id)
   - returns REMOVE_OK/NOT_FOUND/NOT_REMOVED
@@ -53,14 +55,14 @@ The implementation is wrapped in a createDataStorage function. Function returns 
 ### private API(can be used only inside wrapper function)
 
 - readStorage()
-  - returns an array of employees/[]
+  - returns an array of moped/[]
 - writeStorage(data)
   - returns WRITE_OK/WRITE_ERROR
 - getFromStorage(key,value)
-  - returns an employee object/ null
-- addToStorage(newEmployee)
+  - returns an moped object/ null
+- addToStorage(newMoped)
   - returns true/false
-- updateStorage(updatedEmolyee)
+- updateStorage(updatedMoped)
   - returns true/false
 - removeFromStorage(id)
   - returns true/false
