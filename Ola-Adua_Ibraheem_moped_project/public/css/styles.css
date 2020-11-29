@@ -1,17 +1,17 @@
-/* h1 {
-  color: red;
-} */
-
-/* p {
-  color: blue;
+section {
+  display: grid;
+  justify-content: center;
 }
 
-.legend {
-  font-weight: bold;
-  color: black;
-} */
+main {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: auto;
+  border: 3px solid green;
+  padding: 2rem;
+}
 
-main,
 form {
   display: grid;
   align-items: center;
@@ -35,13 +35,24 @@ td {
 }
 
 thead {
-  background-color: khaki;
+  background-color: goldenrod;
+  color: #fff;
 }
 
 button {
   font-family: sans-serif;
   width: 13em;
-  height: 2em;
+  border-radius: 5px;
+  background-color: green;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  color: #fff;
+  border: 2px solid;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 p.error {

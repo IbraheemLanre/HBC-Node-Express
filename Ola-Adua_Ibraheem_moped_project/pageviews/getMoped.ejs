@@ -7,16 +7,18 @@
     <title><%=title%></title>
   </head>
   <body>
-    <main>
-      <h2><%=header%></h2>
-      <form action="<%= action%>" method="POST">
-        <p>
-          <label for="mopedId">MopedId</label>
-          <input type="text" name="mopedId" id="mopedId" size="7" />
-        </p>
-        <button type="submit">Submit</button>
-      </form>
-      <a href="/"><button>Menu</button></a>
-    </main>
+    <section>
+      <main>
+        <h2><%=header%></h2>
+        <form action="<%= action%>" method="POST">
+          <p>
+            <label for="mopedId">MopedId</label>
+            <input type="text" name="mopedId" id="mopedId" size="7" />
+          </p>
+          <button type="submit">Submit</button>
+        </form>
+        <a href="/"><button>Menu</button></a>
+      </main>
+    </section>
   </body>
 </html>
